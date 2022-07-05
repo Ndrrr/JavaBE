@@ -2,7 +2,7 @@ package Homework1;
 
 import java.util.Arrays;
 
-public class NumbersGame implements Game {
+public class NumbersGame extends AbstractGame {
     private int hiddenNumber;
     private int[] userNumbers = new int[3000];
     private int currentIndex = 0;
