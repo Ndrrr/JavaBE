@@ -1,6 +1,5 @@
 package Homework1;
 
-import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -31,4 +30,5 @@ public class Utils {
         System.out.print("Please enter a valid number: ");
         return GetCorrectInt();
     }
+
 }
