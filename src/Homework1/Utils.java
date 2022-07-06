@@ -12,7 +12,7 @@ public class Utils {
     public static int GetRandomInt(){
         return rand.nextInt();
     }
-    private static boolean checkInt(String tmp){
+    public static boolean CheckInt(String tmp){
         if(tmp == null) return false;
         try{
             int tmpInt = Integer.parseInt(tmp);
@@ -23,7 +23,7 @@ public class Utils {
     }
     public static int GetCorrectInt(){
         String tmp = sc.next();
-        boolean check = checkInt(tmp);
+        boolean check = CheckInt(tmp);
         if(check){
             return Integer.parseInt(tmp);
         }
