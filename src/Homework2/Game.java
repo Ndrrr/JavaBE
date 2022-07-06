@@ -13,10 +13,16 @@ public class Game extends AbstractGame {
             hp = 3;
             this.x1 = x1;
             this.x2 = x1+(1-flag)*2;
-            if(this.x2>4) this.x2=0;
+            if(this.x2>4) {
+                this.x2 = x1;
+                this.x1 = x2 -2;
+            }
             this.y1 = y1;
             this.y2 = y1+flag*2;
-            if(this.y2>4) this.y2=0;
+            if(this.y2>4) {
+                this.y2 = y1;
+                this.y1 = y2 - 2;
+            }
         }
         public Target(int x1, int y1){
             hp = 1;
@@ -62,6 +68,7 @@ public class Game extends AbstractGame {
                 board[attackX][attackY]=1;
                 target.hp--;
                 if(target.hp==0){
+                    this.displayBoard();
                     Win();
                     break;
                 }
