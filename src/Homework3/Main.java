@@ -10,12 +10,12 @@ public class Main {
         WeekPlanner weekPlanner = new WeekPlanner();
         while (true) {
             System.out.print("Please, input the day of the week: ");
-            String[] response = sc.nextLine().split(" ",2);
+            String[] response = sc.nextLine().trim().split(" ",2);
 
 
-            if(Objects.equals(response[0], "") && response.length>1){ // if the user input comes after spaces
-                response = response[1].trim().split(" ",2);
-            }
+//            if(Objects.equals(response[0], "") && response.length>1){ // if the user input comes after spaces
+//                response = response[1].trim().split(" ",2);
+//            }
             response[0] = response[0].trim().toLowerCase();
 
             if(response.length>1){
@@ -25,6 +25,10 @@ public class Main {
                 break;
             }
             if(response[0].equals("change")||response[0].equals("reschedule")){
+                if(response.length <2){
+                    System.out.println("Syntax for change/reschedule: change <day> | reschedule <day>");
+                    continue;
+                }
                 System.out.println("Please enter task for " + response[1] );
                 String newTask = sc.nextLine();
                 switch (response[1]){
