@@ -108,15 +108,16 @@ public class Human {
                 + " years old, he is " + (pet.getTrickLevel() > 50 ? "very" : "almost not")
                 + " sly.");
     }
+
+    @Override
     public String toString(){
         return "Human{" +
                 "name='" + name +
                 "', surname='" + surname +
                 "', birthYear=" + birthYear +
                 ", iq=" + iq +
-                ", pet=" + pet +
-                ", Mother=" + Mother +
-                ", Father=" + Father +
+                ", Mother=" + (Mother != null ? Mother.name + " " + Mother.surname : "null") +
+                ", Father=" + (Father != null ? Father.name + " " + Father.surname : "null") +
                 ", pet=" + (pet != null  ? this.pet.toString() : "null") +
                 '}';
     }
@@ -129,4 +130,5 @@ public class Human {
         System.out.println("I think " + pet.getNickName() + "is not hungry.");
         return false;
     }
+
 }
