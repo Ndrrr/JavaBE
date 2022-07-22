@@ -37,7 +37,7 @@ public class Main {
         System.out.println(Vito.toString());
         System.out.println(Rita.toString());
         System.out.println("----------------------------------------------------");
-        
+
         Human father = new Human("John", "Smith", 1975, null,null );
         Human mother = new Human("Jane", "Smith", 1977);
         Human child = new Human("Jack", "Smith", 2000, 50,

@@ -8,8 +8,8 @@ public class Human {
     private int birthYear;
     private int iq;
     private Pet pet;
-    private Human Mother;
-    private Human Father;
+    private Human mother;
+    private Human father;
     private String[][] schedule;
 
     //region Constructors
@@ -26,8 +26,8 @@ public class Human {
         this.name = name;
         this.surname = surname;
         this.birthYear = birthYear;
-        this.Father = father;
-        this.Mother = mother;
+        this.father = father;
+        this.mother = mother;
     }
     public Human(String name, String surname, int birthYear,
                  int iq, Pet pet, Human father, Human mother,
@@ -35,8 +35,8 @@ public class Human {
         this.name = name;
         this.surname = surname;
         this.birthYear = birthYear;
-        this.Father = father;
-        this.Mother = mother;
+        this.father = father;
+        this.mother = mother;
         this.pet = pet;
         this.iq = iq;
         this.schedule = schedule.clone();
@@ -60,10 +60,10 @@ public class Human {
         return pet;
     }
     public Human getMother() {
-        return Mother;
+        return mother;
     }
     public Human getFather() {
-        return Father;
+        return father;
     }
     public String[][] getSchedule() {
         return schedule.clone();
@@ -87,10 +87,10 @@ public class Human {
         this.pet = pet;
     }
     public void setMother(Human mother) {
-        this.Mother = mother;
+        this.mother = mother;
     }
     public void setFather(Human father) {
-        this.Father = father;
+        this.father = father;
     }
     public void setSchedule(String[][] schedule) {
         this.schedule = schedule;
@@ -116,8 +116,8 @@ public class Human {
                 "', surname='" + surname +
                 "', birthYear=" + birthYear +
                 ", iq=" + iq +
-                ", Mother=" + (Mother != null ? Mother.name + " " + Mother.surname : "null") +
-                ", Father=" + (Father != null ? Father.name + " " + Father.surname : "null") +
+                ", Mother=" + (mother != null ? mother.name + " " + mother.surname : "null") +
+                ", Father=" + (father != null ? father.name + " " + father.surname : "null") +
                 ", pet=" + (pet != null  ? this.pet.toString() : "null") +
                 '}';
     }
