@@ -13,12 +13,12 @@ public abstract class AbstractHuman {
     protected Family family;
     protected String[][] schedule;
 
-    static {
-        System.out.println("Human class loaded");
-    }
-    {
-        System.out.println("Human object created");
-    }
+//    static {
+//        System.out.println("Human class loaded");
+//    }
+//    {
+//        System.out.println("Human object created");
+//    }
     //region Constructors
     public AbstractHuman(){}
 

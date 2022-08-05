@@ -37,8 +37,9 @@ public class HumanTest {
 
         Woman human1 = new Woman("Name", "Surname", 1990, 666, schedule);
 
-        assertEquals(human1.toString(),
-                "Human{name='Name', surname='Surname', birthYear=1990, iq=666, schedule=[[Day 1: null], [Day 2: 1 2 3 ], [Day 3: 4 5 6 ], [Day 4: null], [Day 5: null], [Day 6: null], [Day 7: null]]}");
+        assertEquals(
+                "Human{name='Name', surname='Surname', birthYear=1990, iq=666, schedule=[[Day 1: null], [Day 2: 1 2 3 ], [Day 3: 4 5 6 ], [Day 4: null], [Day 5: null], [Day 6: null], [Day 7: null]]}",
+                human1.toString());
     }
 
     @Test

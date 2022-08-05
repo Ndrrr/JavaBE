@@ -30,7 +30,8 @@ public class PetTest {
     @Test
     public void testPetToString(){
         System.out.println(pet.toString());
-        assertEquals(pet.toString(),"DOG{canFly=false, numberOfLegs=4, hasFur=true}{nickname='Pet', age=0, trickLevel=0, habits=null}");
+        assertEquals("DOG{canFly=false, numberOfLegs=4, hasFur=true}{nickname='Pet', age=0, trickLevel=0, habits=null}",
+                pet.toString());
     }
 
 }

@@ -19,14 +19,20 @@ public class Utils {
         dotenv = Dotenv.configure().load();
         apiKey = dotenv.get("NAME_GENERATOR_API_KEY");
     }
+
+    //
     // If you don't have an API key or proper internet connection
     // You should use hard coded version
+    //
+    // You can use the following link for key
+    // https://parser.name/api/generate-random-name/
+    //
     public static String getRandomName(char gender, boolean hardCoded) {
         if(hardCoded){
             return getHardCodedRandomName(gender);
         }
 
-        BufferedReader reader;
+        BufferedReader reader = null;
         StringBuilder responseContent = new StringBuilder();
         String line;
         try{
@@ -43,25 +49,29 @@ public class Utils {
 
             if (status >= 300) {
                 reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
+                throw new RuntimeException("Connection was unsuccessfull");
             }
-            else {
+            else{
                 reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
             }
-            System.out.println(responseContent.toString());
+
+            while ((line = reader.readLine()) != null) {
+                responseContent.append(line);
+            }
+
+
+            //System.out.println(responseContent.toString());
         }
-        catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }finally {
+            try {
+                if(reader!=null)
+                reader.close();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
             conn.disconnect();
         }
 
@@ -80,6 +90,6 @@ public class Utils {
                 {"Elizabeth", "Anna", "Lana", "Rebecca"},
                 {"Elijah", "John", "Stephan", "Klaus"}};
         Random rand = new Random();
-        return names[gender%2][(rand.nextInt())%names.length];
+        return names[gender%2][Math.abs(rand.nextInt()%names.length)];
     }
 }

@@ -17,12 +17,12 @@ public class Family implements HumanCreator {
     private AbstractHuman[] children;
     private AbstractPet pet;
 
-    static {
-        System.out.println("Family class loaded");
-    }
-    {
-        System.out.println("Family object created");
-    }
+//    static {
+//        System.out.println("Family class loaded");
+//    }
+//    {
+//        System.out.println("Family object created");
+//    }
 //    public Family(Human mother, Human father, Human[] children, Pet pet) {
 //        this.mother = mother;
 //        this.father = father;

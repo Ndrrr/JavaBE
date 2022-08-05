@@ -43,9 +43,8 @@ public class FamilyTest {
     @Test
     public void testDeleteChildByFakeIndex(){
         family.addChild(new Woman("Child2", "Doe", 2013));
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> family.deleteChild(5));
-        String expectedMessage = "Index is out of range";
-        assertEquals(exception.getMessage(),expectedMessage);
+        boolean res = family.deleteChild(5);
+        assertEquals(res,false);
     }
 
     @Test
@@ -81,7 +80,14 @@ public class FamilyTest {
 
     @Test
     public void testFamilyCount(){
-        assertEquals(family.countFamily(),3);
+        assertEquals(family.countFamily(),4);
+    }
+
+    @Test
+    public void testBornChild(){
+        int count = family.countFamily();
+        family.bornChild();
+        assertEquals(count+1, family.countFamily());
     }
 
 }

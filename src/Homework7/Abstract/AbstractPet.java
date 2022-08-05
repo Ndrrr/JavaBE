@@ -12,12 +12,12 @@ public abstract class AbstractPet {
     protected int trickLevel;
     protected String[] habits;
 
-    static {
-        System.out.println("Pet class loaded");
-    }
-    {
-        System.out.println("Pet object created");
-    }
+//    static {
+//        System.out.println("Pet class loaded");
+//    }
+//    {
+//        System.out.println("Pet object created");
+//    }
     //region Constructors
     public AbstractPet(){}
     public AbstractPet(String nickname){
