@@ -1,19 +1,21 @@
-package Homework12.consoleview;
+package Homework13.consoleview;
 
-import Homework12.Context;
-import Homework12.controller.FamilyController;
-import Homework12.exception.FamilyOverflowException;
-import Homework12.model.Abstract.AbstractHuman;
-import Homework12.model.Concrete.Dog;
-import Homework12.model.Concrete.Family;
-import Homework12.model.Concrete.Man;
-import Homework12.model.Concrete.Woman;
+import Homework13.Context;
+import Homework13.controller.FamilyController;
+import Homework13.exception.FamilyOverflowException;
+import Homework13.log.Logger;
+import Homework13.model.Abstract.AbstractHuman;
+import Homework13.model.Concrete.Dog;
+import Homework13.model.Concrete.Family;
+import Homework13.model.Concrete.Man;
+import Homework13.model.Concrete.Woman;
 
 import java.util.Scanner;
 
 public class ConsoleApplication {
 
     private final Context context = Context.getInstance();
+    private final Logger logger = Logger.getInstance();
     private final FamilyController familyController = context.getFamilyController();
     private final String lineDelimiter = "<<<---------------------------------------------------->>>\n";
     private final String commandList = "Available Commands: \n" +
@@ -26,8 +28,10 @@ public class ConsoleApplication {
             "- 6. Create a new family\n" +
             "- 7. Delete a family\n" +
             "- 8. Edit a family by its index in the general list\n" +
-            "- 9. Remove all children over the specified age\n"
-            + lineDelimiter;
+            "- 9. Remove all children over the specified age\n" +
+            "- 10. Load data from file\n" +
+            "- 11. Save data to file\n" +
+             lineDelimiter;
 
     public static void main(String[] args) {
         ConsoleApplication consoleApplication = new ConsoleApplication();
@@ -49,6 +53,8 @@ public class ConsoleApplication {
                 case 7 -> deleteFamilyCommand();
                 case 8 -> updateFamilyCommand();
                 case 9 -> removeAllChildrenOverGivenAgeCommand();
+                case 10 -> loadData();
+                case 11 -> saveData();
                 default -> System.out.println("Incorrect Command.");
             }
             if(isFinished) {
@@ -151,6 +157,7 @@ public class ConsoleApplication {
             familyController.adoptChild(familyController.getFamilyById(id), child);
         }catch (FamilyOverflowException exception){
             System.out.println(exception.getMessage());
+            logger.error(exception.getMessage());
         }
     }
 
@@ -164,7 +171,7 @@ public class ConsoleApplication {
 
 
     private void outFailMessage(){
-        System.out.println("Failed!!!");
+        System.out.println("Unsuccessfully!!!");
     }
 
     private void outSuccessMessage(){
@@ -194,5 +201,12 @@ public class ConsoleApplication {
         familyController.adoptChild(fam1,new Man("Harry", "Brown",2018));
         fam1.addPet(new Dog("dog"));
         outSuccessMessage();
+    }
+
+    private void loadData(){
+        familyController.loadData();
+    }
+    private void saveData(){
+        familyController.saveData();
     }
 }
