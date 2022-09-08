@@ -148,6 +148,7 @@ public class Family implements HumanCreator, Serializable {
                     this);
         }
         return child;
+
     }
 
     public String prettyFormat(){

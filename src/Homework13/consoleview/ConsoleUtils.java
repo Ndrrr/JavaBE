@@ -1,9 +1,10 @@
 package Homework13.consoleview;
 
+import Homework13.model.Abstract.AbstractHuman;
+import Homework13.model.Concrete.Man;
+import Homework13.model.Concrete.Woman;
 import Homework13.Context;
 import Homework13.log.Logger;
-import Homework13.model.Abstract.AbstractHuman;
-import Homework13.model.Concrete.Woman;
 
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -48,7 +49,7 @@ public class ConsoleUtils {
         return getCorrectInt();
     }
 
-    public static AbstractHuman askHumanData(){
+    public static AbstractHuman askHumanData(boolean gender){
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter first name: ");
         String firstName = sc.nextLine();
@@ -63,6 +64,10 @@ public class ConsoleUtils {
         String birthDate = birthDay + "/" + monthId + "/" + birthYear;
         System.out.print("Please enter iq: ");
         int iq = getCorrectInt();
-        return new Woman(firstName, lastName, birthDate, iq);
+        if(gender)
+            return new Woman(firstName, lastName, birthDate, iq);
+        else
+            return new Man(firstName, lastName, birthDate, iq);
+
     }
 }

@@ -2,6 +2,7 @@ package Homework12.consoleview;
 
 import Homework12.Context;
 import Homework12.model.Abstract.AbstractHuman;
+import Homework12.model.Concrete.Man;
 import Homework12.model.Concrete.Woman;
 
 import java.util.Scanner;
@@ -47,7 +48,7 @@ public class ConsoleUtils {
         return getCorrectInt();
     }
 
-    public static AbstractHuman askHumanData(){
+    public static AbstractHuman askHumanData(boolean gender){
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter first name: ");
         String firstName = sc.nextLine();
@@ -62,6 +63,10 @@ public class ConsoleUtils {
         String birthDate = birthDay + "/" + monthId + "/" + birthYear;
         System.out.print("Please enter iq: ");
         int iq = getCorrectInt();
-        return new Woman(firstName, lastName, birthDate, iq);
+        if(gender)
+            return new Woman(firstName, lastName, birthDate, iq);
+        else
+            return new Man(firstName, lastName, birthDate, iq);
+
     }
 }

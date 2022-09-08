@@ -10,6 +10,7 @@ import Homework13.model.Concrete.Family;
 import Homework13.model.Concrete.Man;
 import Homework13.model.Concrete.Woman;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ConsoleApplication {
@@ -99,11 +100,12 @@ public class ConsoleApplication {
     }
     private void createNewFamilyCommand(){
         System.out.println("Creating Mother...");
-        AbstractHuman mother = ConsoleUtils.askHumanData();
+        AbstractHuman mother =ConsoleUtils.askHumanData(true);
         System.out.println("Creating Father...");
-        AbstractHuman father = ConsoleUtils.askHumanData();
+        AbstractHuman father = ConsoleUtils.askHumanData(false);
         familyController.createNewFamily(mother, father);
     }
+
 
     private void deleteFamilyCommand(){
         int familyCount = familyController.count();
@@ -152,7 +154,7 @@ public class ConsoleApplication {
         System.out.print("Please enter family id: ");
         int familyCount = familyController.count();
         int id = ConsoleUtils.getCorrectInt(_id -> _id >= 0 && _id < familyCount, "Index out of bound");
-        AbstractHuman child = ConsoleUtils.askHumanData();
+        AbstractHuman child = ConsoleUtils.askHumanData(new Random().nextBoolean());
         try {
             familyController.adoptChild(familyController.getFamilyById(id), child);
         }catch (FamilyOverflowException exception){
