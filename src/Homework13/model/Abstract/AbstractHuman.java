@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public abstract class AbstractHuman implements Serializable {
@@ -82,6 +85,10 @@ public abstract class AbstractHuman implements Serializable {
     public String getSurname() {
         return surname;
     }
+    public long getAge(){
+        LocalDate date = LocalDate.ofEpochDay(birthDate/3600000/24);
+        return ChronoUnit.YEARS.between(date, LocalDate.now());
+    }
     public long getBirthDate() {
         return birthDate;
     }
@@ -121,13 +128,12 @@ public abstract class AbstractHuman implements Serializable {
     //endregion
 
     public String describeAge() {
-        long sec = (System.currentTimeMillis() - this.birthDate) / 1000;
-        long days = sec / (60 * 60 * 24);
-        long years = days / 365;
-        long months = (days - years * 365) / 30;
-        long daysLeft = days - years * 365 - months * 30;
-        System.out.println(new Date(birthDate));
-        return String.format("%d years %d months %d days", years, months, daysLeft);
+        LocalDate now = LocalDate.now();
+        LocalDate date = LocalDate.ofEpochDay(birthDate/3600000/24);
+        long year = ChronoUnit.YEARS.between(date, now);
+        return String.format("%d years %d months %d days", year ,
+                ChronoUnit.MONTHS.between(date, now)%12,
+                ChronoUnit.DAYS.between(date, now) - year * 365);
     }
     public void greetPets() {
         if(family.getPets()==null){

@@ -78,7 +78,7 @@ public class FamilyService {
                     List<AbstractHuman> children = family.getChildren();
                     List<AbstractHuman> deletedChildren = new ArrayList<>();
                     children.stream()
-                            .filter(child -> currentYear - child.getBirthDate() > age)
+                            .filter(child -> child.getAge() > age)
                             .forEach(deletedChildren::add);
                     // for avoiding concurrent modification exception
                     deletedChildren.stream().forEach(family::deleteChild);
